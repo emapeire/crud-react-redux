@@ -73,18 +73,27 @@ export default function ListOfUsers() {
         <TableHead>
           <TableRow>
             <TableHeaderCell>Id</TableHeaderCell>
-            <TableHeaderCell className='text-right'>Name</TableHeaderCell>
-            <TableHeaderCell className='text-right'>E-mail</TableHeaderCell>
-            <TableHeaderCell className='text-right'>Actions</TableHeaderCell>
+            <TableHeaderCell>Name</TableHeaderCell>
+            <TableHeaderCell>E-mail</TableHeaderCell>
+            <TableHeaderCell>Actions</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {users.map((item) => (
             <TableRow key={item.id}>
               <TableCell>{item.id}</TableCell>
-              <TableCell className='text-right'>{item.name}</TableCell>
-              <TableCell className='text-right'>{item.email}</TableCell>
-              <TableCell className='text-right'>{item.actions}</TableCell>
+              <TableCell className='flex gap-4 items-center'>
+                <img
+                  src={`https://unavatar.io/github/${item.github}`}
+                  alt={item.name}
+                  width='32'
+                  height='32'
+                  className='rounded-md'
+                />
+                {item.name}
+              </TableCell>
+              <TableCell>{item.email}</TableCell>
+              <TableCell>{item.actions}</TableCell>
             </TableRow>
           ))}
         </TableBody>
