@@ -1,9 +1,10 @@
 import './App.css'
+import ListOfUsers from './components/ListOfUsers'
 
 export default function App() {
   return (
-    <>
-      <h1>Our project with Redux</h1>
-    </>
+    <main>
+      <ListOfUsers />
+    </main>
   )
 }
