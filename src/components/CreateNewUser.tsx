@@ -1,6 +1,7 @@
 import { Badge, Button, Card, TextInput, Title } from '@tremor/react'
 import { useUserActions } from '../hook/useUserActions'
 import { useState } from 'react'
+import { userSchema } from '../users/schema'
 
 export default function CreateNewUser() {
   const { createUser } = useUserActions()
@@ -18,8 +19,12 @@ export default function CreateNewUser() {
     const email = formData.get('email') as string
     const github = formData.get('github') as string
 
-    if (!name || !email || !github) {
-      return setResult('error')
+    // zod schema validation
+    const validation = userSchema.safeParse({ name, email, github })
+
+    if (!validation.success) {
+      setResult('error')
+      return
     }
 
     createUser({ name, email, github })
@@ -30,7 +35,7 @@ export default function CreateNewUser() {
   return (
     <Card className='mt-4'>
       <Title className='mb-4 ml-2'>Create New User</Title>
-      <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
+      <form className='flex flex-col gap-3' onSubmit={handleSubmit}>
         <TextInput placeholder='Name' name='name' />
         <TextInput placeholder='E-mail' name='email' />
         <TextInput placeholder='Github username' name='github' />
