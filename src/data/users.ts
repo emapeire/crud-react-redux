@@ -1,4 +1,4 @@
-export const users = [
+export const INITIAL_USERS = [
   {
     id: '1',
     name: 'Peter Doe',
