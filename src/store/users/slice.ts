@@ -1,57 +1,64 @@
-export const users: {
-  id: string
+import { createSlice } from '@reduxjs/toolkit'
+
+export interface User {
   name: string
   email: string
   github: string
-  actions: string
-}[] = [
+}
+
+export interface UsersWithId extends User {
+  id: string
+}
+
+const initialState: UsersWithId[] = [
   {
     id: '1',
     name: 'Peter Doe',
     email: 'peter@doe.com',
-    github: 'peterdoe',
-    actions: 'edit'
+    github: 'peterdoe'
   },
   {
     id: '2',
     name: 'Lena Whitehouse',
     email: 'lena@whitehouse.com',
-    github: 'lenawhitehouse',
-    actions: 'delete'
+    github: 'lenawhitehouse'
   },
   {
     id: '3',
     name: 'Phil Less',
     email: 'phil@less.com',
-    github: 'philless',
-    actions: 'edit'
+    github: 'philless'
   },
   {
     id: '4',
     name: 'John Camper',
     email: 'john@camper.com',
-    github: 'johncamper',
-    actions: 'edit'
+    github: 'johncamper'
   },
   {
     id: '5',
     name: 'Max Balmoore',
     email: 'max@balmoore.com',
-    github: 'maxbalmoore',
-    actions: 'edit'
+    github: 'maxbalmoore'
   },
   {
     id: '6',
     name: 'Peter Moore',
     email: 'peter@moore.com',
-    github: 'petermoore',
-    actions: 'edit'
+    github: 'petermoore'
   },
   {
     id: '7',
     name: 'Joe Sachs',
     email: 'joe@sachs.com',
-    github: 'joesachs',
-    actions: 'delete'
+    github: 'joesachs'
   }
 ]
+
+export const usersSlice = createSlice({
+  name: 'users',
+  initialState,
+  reducers: {}
+})
+
+export default usersSlice.reducer

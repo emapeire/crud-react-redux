@@ -9,9 +9,11 @@ import {
   TableRow,
   Title
 } from '@tremor/react'
-import { users } from '../data/users'
+import { useAppSelector } from '../hook/store'
 
 export default function ListOfUsers() {
+  const users = useAppSelector((state) => state.users)
+
   return (
     <Card>
       <section className='flex gap-4 mb-10 border border-slate-600 rounded-md max-w-fit px-4 py-3 ml-4 justify-center'>
