@@ -1,11 +1,16 @@
-import { deleteUserById } from '../store/users/slice'
-import { UserId } from '../types'
+import { createNewUser, deleteUserById } from '../store/users/slice'
+import { type UserId, User } from '../types'
 import { useAppDispatch } from './store'
 
 export const useUserActions = () => {
   const dispatch = useAppDispatch()
-  const handleDeleteUser = (id: UserId) => {
+
+  const createUser = ({ name, email, github }: User) => {
+    dispatch(createNewUser({ name, email, github }))
+  }
+
+  const deleteUser = (id: UserId) => {
     dispatch(deleteUserById(id))
   }
-  return { deleteUser: handleDeleteUser }
+  return { createUser, deleteUser }
 }
