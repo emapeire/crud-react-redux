@@ -1,3 +1,5 @@
+export type UserId = string
+
 export interface User {
   name: string
   email: string
@@ -5,5 +7,9 @@ export interface User {
 }
 
 export interface UsersWithId extends User {
-  id: string
+  id: UserId
+}
+
+export type ButtonActions = {
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
