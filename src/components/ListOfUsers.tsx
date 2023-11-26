@@ -16,7 +16,7 @@ export default function ListOfUsers() {
 
   return (
     <Card>
-      <section className='flex gap-4 mb-10 border border-slate-600 rounded-md max-w-fit px-4 py-3 ml-4 justify-center'>
+      <section className='flex gap-4 mb-4 border border-slate-600 rounded-md max-w-fit px-4 py-3 ml-4 justify-center'>
         <Title>Users</Title>
         <Badge>{users.length}</Badge>
       </section>
