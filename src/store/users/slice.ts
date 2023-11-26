@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { type UserId, UsersWithId, User } from '../../types'
-import { INITIAL_USERS as DEFAULT_STATE } from '../../users/data/users'
+import { INITIAL_USERS as DEFAULT_STATE } from '../../data/users'
 
 const initialState: UsersWithId[] = (() => {
   const persistedState = localStorage.getItem('__reduxState__')

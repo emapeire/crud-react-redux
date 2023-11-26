@@ -1,7 +1,7 @@
 import { Badge, Button, Card, TextInput, Title } from '@tremor/react'
 import { useUserActions } from '../hook/useUserActions'
 import { useState } from 'react'
-import { userSchema } from '../users/schema'
+import { userSchema } from '../data/schema'
 
 export default function CreateNewUser() {
   const { createUser } = useUserActions()
