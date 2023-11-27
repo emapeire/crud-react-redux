@@ -1,5 +1,7 @@
 import { Middleware } from '@reduxjs/toolkit'
 import { toast } from 'sonner'
+import { UsersWithId } from '../types'
+import { rollbackUser } from '../store/users/slice'
 
 export const persistanceLocalStorageAction: Middleware =
   (store) => (next) => (action) => {
@@ -8,12 +10,17 @@ export const persistanceLocalStorageAction: Middleware =
   }
 
 export const syncWithDataBaseAction: Middleware =
-  (_store) => (next) => (action) => {
+  (store) => (next) => (action) => {
     const { type, payload } = action
+    const previouseState = store.getState()
 
     next(action)
 
     if (type === 'users/deleteUserById') {
+      const userToBeDeleted = previouseState.users.find(
+        (user: UsersWithId) => user.id === payload
+      )
+
       fetch(`https://jsonplaceholder.typicode.com/users/${payload}`, {
         method: 'DELETE'
       })
@@ -21,10 +28,13 @@ export const syncWithDataBaseAction: Middleware =
           if (res.ok) {
             toast.success('User deleted successfully')
           }
+          throw new Error('Error deleting user')
         })
-        .catch((error) => {
-          console.error(error)
+        .catch(() => {
           toast.error('Error deleting user')
+          if (userToBeDeleted) {
+            store.dispatch(rollbackUser(userToBeDeleted))
+          }
         })
     }
 
