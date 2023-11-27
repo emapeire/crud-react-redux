@@ -16,7 +16,7 @@ export const usersSlice = createSlice({
   reducers: {
     createNewUser: (state, action: PayloadAction<User>) => {
       const id = crypto.randomUUID()
-      return [...state, { ...action.payload, id }]
+      state.push({ ...action.payload, id })
     },
     deleteUserById: (state, action: PayloadAction<UserId>) => {
       const id = action.payload
@@ -27,7 +27,7 @@ export const usersSlice = createSlice({
         (user) => user.id === action.payload.id
       )
       if (!isUserAlreadyDefined) {
-        return [...state, action.payload]
+        state.push(action.payload)
       }
     }
   }
