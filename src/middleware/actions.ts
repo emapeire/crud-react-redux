@@ -2,6 +2,7 @@ import { Middleware } from '@reduxjs/toolkit'
 import { toast } from 'sonner'
 import { UsersWithId } from '../types'
 import { rollbackUser } from '../store/users/slice'
+import { API_URL } from '../constants'
 
 export const persistanceLocalStorageAction: Middleware =
   (store) => (next) => (action) => {
@@ -21,7 +22,7 @@ export const syncWithDataBaseAction: Middleware =
         (user: UsersWithId) => user.id === payload
       )
 
-      fetch(`https://jsonplaceholder.typicode.com/users/${payload}`, {
+      fetch(`${API_URL}/${payload}`, {
         method: 'DELETE'
       })
         .then((res) => {
@@ -39,7 +40,7 @@ export const syncWithDataBaseAction: Middleware =
     }
 
     if (type === 'users/createNewUser') {
-      fetch('https://jsonplaceholder.typicode.com/users', {
+      fetch(`${API_URL}`, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: {
