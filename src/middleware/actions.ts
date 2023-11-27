@@ -29,7 +29,6 @@ export const syncWithDataBaseAction: Middleware =
           if (res.ok) {
             toast.success('User deleted successfully')
           }
-          throw new Error('Error deleting user')
         })
         .catch(() => {
           toast.error('Error deleting user')
