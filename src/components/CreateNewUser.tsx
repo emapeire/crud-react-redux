@@ -45,12 +45,12 @@ export default function CreateNewUser() {
           </Button>
           <span>
             {result === 'success' && (
-              <Badge className='ml-4 py-[9px] px-4 rounded-lg' color='green'>
+              <Badge className='ml-4 py-[9px] px-4 rounded-xl' color='green'>
                 Success ✅
               </Badge>
             )}
             {result === 'error' && (
-              <Badge className='ml-4 py-[9px] px-4 rounded-lg' color='red'>
+              <Badge className='ml-4 py-[9px] px-4 rounded-xl' color='red'>
                 Error ❌
               </Badge>
             )}

@@ -1,12 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import usersReducer from './users/slice'
-import { persistanceLocalStorageAction } from '../middleware/actions'
+import {
+  persistanceLocalStorageAction,
+  syncWithDataBaseAction
+} from '../middleware/actions'
 
 export const store = configureStore({
   reducer: {
     users: usersReducer
   },
-  middleware: [persistanceLocalStorageAction]
+  middleware: [persistanceLocalStorageAction, syncWithDataBaseAction]
 })
 
 export type RootState = ReturnType<typeof store.getState>
