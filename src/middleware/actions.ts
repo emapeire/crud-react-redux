@@ -8,7 +8,7 @@ export const persistanceLocalStorageAction: Middleware =
   }
 
 export const syncWithDataBaseAction: Middleware =
-  (store) => (next) => (action) => {
+  (_store) => (next) => (action) => {
     const { type, payload } = action
 
     next(action)
